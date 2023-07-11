@@ -14,7 +14,7 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::permanentRedirect('/', '/admin/home/');
+Route::permanentRedirect('/', 'admin/home');
 
 Route::post('/data', 'App\Http\Controllers\HomeController@data');
 

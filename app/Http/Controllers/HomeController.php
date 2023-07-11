@@ -23,20 +23,22 @@ class HomeController extends Controller
 public function data(Request $request)
 {
     // dd($request);
-    $activeSendingCountries = SendingCountry::getActiveCountries();
-    $activeReceivingCountries = ReceivingCountry::getActiveCountries();
+    $sendingCountryId = $request->input('sending_country');
+    $receivingCountryId = $request->input('receiving_country');
 
+    $staticRate = 0;
+    $customisedRate = 0;
 
+    // Check if the selected sending and receiving country IDs exist
+    if ($sendingCountryId && $receivingCountryId) {
+        $staticRate = ConversionRate::getStaticRate($sendingCountryId, $receivingCountryId);
+        $customisedRate = CustomisedRate::getCustomisedRate($sendingCountryId, $receivingCountryId);
+    }
 
-    $sendingCountryId = $request->sending_country;
-    $receivingCountryId = $request->receiving_country;
-
-    $staticRate = ConversionRate::getStaticRate($sendingCountryId, $receivingCountryId);
-    $customisedRate = CustomisedRate::getCustomisedRate($sendingCountryId, $receivingCountryId);
     $conversionRate = $staticRate + $customisedRate;
 
     return response()->json([
-        'staticRate'=> $staticRate,
+        'staticRate' => $staticRate,
         'customisedRate' => $customisedRate,
         'conversionRate' => $conversionRate,
     ]);

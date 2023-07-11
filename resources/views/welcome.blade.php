@@ -13,7 +13,7 @@
                         @method('POST')
                         <div class="mb-3">
                             <label for="parentcategory" class="form-label">Sending Country</label>
-                            <select class="form-select" id="parentcategory" id="send_country" name="send"
+                            <select class="form-select" id="parentcategory" id="send_country" name="sending_country"
                                 aria-label="Default select example" required>
                                 <option>Select a Option</option>
                                 @foreach ($sendcontry as $item)
@@ -23,7 +23,7 @@
                         </div>
                         <div class="mb-3">
                             <label for="parentcategory" class="form-label">Recieving Country</label>
-                            <select class="form-select" id="parentcategory" id="receive_country" name="recive"
+                            <select class="form-select" id="parentcategory" id="receive_country" name="receiving_country"
                                 aria-label="Default select example" required>
                                 <option>Select a Option</option>
                                 @foreach ($reccontry as $item)
